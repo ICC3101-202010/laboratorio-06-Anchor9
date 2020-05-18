@@ -4,7 +4,10 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    class Area
+    [Serializable]
+    class Area : Division
     {
+        protected string name;
+        protected List<Departamento> dptos;
     }
 }

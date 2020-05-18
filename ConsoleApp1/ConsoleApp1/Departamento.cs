@@ -4,7 +4,11 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    class Departamento
+    [Serializable]
+    class Departamento : Area
     {
+        protected string name;
+        protected List<Seccion> secciones;
+
     }
 }

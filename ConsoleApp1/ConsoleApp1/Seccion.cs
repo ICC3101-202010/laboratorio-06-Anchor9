@@ -4,7 +4,11 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    class Seccion
+    [Serializable]
+    class Seccion : Departamento
     {
+
+        protected string name;
+        protected List<Bloque> bloques;
     }
 }
