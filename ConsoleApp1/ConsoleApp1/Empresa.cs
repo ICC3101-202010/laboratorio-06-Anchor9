@@ -17,6 +17,7 @@ namespace ConsoleApp1
 
         public string Nombre { get => nombre; set => nombre = value; }
         public string Rut { get => rut; set => rut = value; }
+        public List<Division> Divisiones { get => divisiones; set => divisiones = value; }
 
         public Empresa(string Nombre, string Rut) 
         {

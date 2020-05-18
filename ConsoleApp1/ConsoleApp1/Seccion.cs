@@ -5,10 +5,16 @@ using System.Text;
 namespace ConsoleApp1
 {
     [Serializable]
-    class Seccion : Departamento
+    class Seccion : Division
     {
+        private List<Bloque> bloques = new List<Bloque>();
+        public List<Bloque> Bloques { get => bloques; set => bloques = value; }
 
-        protected string name;
-        protected List<Bloque> bloques;
+
+        public Seccion(string Nombre, Persona Encargado) : base(Nombre, Encargado)
+        {
+
+        }
+
     }
 }

@@ -6,9 +6,14 @@ using System.Text;
 namespace ConsoleApp1
 {
     [Serializable]
-    class Bloque : Seccion
+    class Bloque :  Division
     {
-        protected string name;
-        protected List<Persona> personal;
+        public List<Persona> personal = new List<Persona>();
+        public List<Persona> Personal { get => personal; set => personal = value; }
+
+        public Bloque(string Nombre, Persona Encargado) : base(Nombre, Encargado)
+        {
+
+        }
     }
 }
