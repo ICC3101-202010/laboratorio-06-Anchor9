@@ -78,12 +78,12 @@ namespace ConsoleApp1
 
         private static void ShowAllCompanyInfo(Empresa empresa) 
         {
-            Console.WriteLine("Su empresa es" + empresa.Nombre + "y su rut es" + empresa.Rut); 
+            Console.WriteLine("Su empresa es" + empresa.Nombre + "y su rut es" + empresa.Rut);
+            Console.WriteLine(empresa.Divisiones[0]);
             try
             {
                 int largo =  empresa.Divisiones.Count;
-                if (largo == 4)
-                {
+      
                     foreach (Area area in empresa.Divisiones)
                     {
                         Console.WriteLine("Nombre area: " + area.Name + "\nNombre encargado: " + area.Encargado);
@@ -106,31 +106,15 @@ namespace ConsoleApp1
                         }
                     }
 
-                }
-                else if (largo == 3)
+            }
+         
+            
+            catch 
+            {
+                foreach (Departamento departamento in empresa.Divisiones)
                 {
-                    foreach (Departamento departamento in empresa.Divisiones)
-                    {
-                        Console.WriteLine("Nombre departamento: " + departamento.Name + "\nNombre encargado: " + departamento.Encargado);
-                        foreach (Seccion seccion in departamento.Seccion)
-                        {
-                            Console.WriteLine("Nombre seccion: " + seccion.Name + "\nNombre encargado: " + seccion.Encargado);
-                            foreach (Bloque bloque in seccion.Bloques)
-                            {
-                                Console.WriteLine("Nombre bloque: " + bloque.Name + "\nNombre encargado: " + bloque.Encargado);
-                                foreach (Persona persona in bloque.Personal)
-                                {
-                                    Console.WriteLine("Nombre persona: " + persona.Nombre + "\nrut: " + persona.Rut);
-
-                                }
-                            }
-                        }
-                    }
-
-                }
-                else if (largo == 2)
-                {
-                    foreach (Seccion seccion in empresa.Divisiones)
+                    Console.WriteLine("Nombre departamento: " + departamento.Name + "\nNombre encargado: " + departamento.Encargado);
+                    foreach (Seccion seccion in departamento.Seccion)
                     {
                         Console.WriteLine("Nombre seccion: " + seccion.Name + "\nNombre encargado: " + seccion.Encargado);
                         foreach (Bloque bloque in seccion.Bloques)
@@ -144,25 +128,6 @@ namespace ConsoleApp1
                         }
                     }
                 }
-                else if (largo == 1) 
-                {
-                    foreach (Bloque bloque in empresa.Divisiones)
-                    {
-                        Console.WriteLine("Nombre bloque: " + bloque.Name + "\nNombre encargado: " + bloque.Encargado);
-                        foreach (Persona persona in bloque.Personal)
-                        {
-                            Console.WriteLine("Nombre persona: " + persona.Nombre + "\nrut: " + persona.Rut);
-
-                        }
-                    }
-
-                }
-
-         
-            }
-            catch 
-            {
-            
             }
         
         }
