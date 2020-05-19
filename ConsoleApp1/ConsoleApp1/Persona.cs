@@ -4,8 +4,10 @@ using System.Text;
 
 namespace ConsoleApp1
 {
+    [Serializable]
     class Persona
     {
+        
         private string nombre;
         private string rut;
         private string cargo;

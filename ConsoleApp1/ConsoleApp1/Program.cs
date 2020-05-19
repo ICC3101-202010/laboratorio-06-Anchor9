@@ -3,9 +3,11 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Xml.Serialization;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ConsoleApp1
 {
+    
     class Program
     {
         static void Main(string[] args)
@@ -13,7 +15,7 @@ namespace ConsoleApp1
 
             Console.WriteLine("Hello World!");
 
-            Console.WriteLine("¿Desea cargar archivo con informacion de la empresa?\n[1]Yes\n[2]No");
+            Console.WriteLine("¿Desea cargar archivo con informacion de la empresa?\n[1]Si\n[2]No");
             string opcion = Convert.ToString(Console.ReadLine());
             while (opcion != "1" && opcion != "2")
             {
@@ -24,15 +26,15 @@ namespace ConsoleApp1
 
                 try
                 {
-                    LoadINFO();
+                    
+                    ShowAllCompanyInfo(LoadINFO());
                 }
                 catch (FileNotFoundException e)
                 {
                     Console.WriteLine("No se encuentra archivo");
                     Console.WriteLine(e.Message);
                     Console.WriteLine("Se creará un nuevo archivo");
-                    //Llamo a metodo de crear empresa
-
+                    CrearEmpresa();
                 }
 
             }
@@ -73,21 +75,90 @@ namespace ConsoleApp1
 
 
         }
-        private static void SaveINFOdivisions(Empresa empresa)
-        {
-            FileStream file_name = new FileStream("empresa.bin", FileMode.CreateNew);
-            
-            foreach (var division in empresa.Divisiones) 
-            {
-                IFormatter formatter = new BinaryFormatter();
 
-            }
-
-        }
         private static void ShowAllCompanyInfo(Empresa empresa) 
         {
+            Console.WriteLine("Su empresa es" + empresa.Nombre + "y su rut es" + empresa.Rut); 
             try
             {
+                int largo =  empresa.Divisiones.Count;
+                if (largo == 4)
+                {
+                    foreach (Area area in empresa.Divisiones)
+                    {
+                        Console.WriteLine("Nombre area: " + area.Name + "\nNombre encargado: " + area.Encargado);
+                        foreach (Departamento departamento in area.Dptos)
+                        {
+                            Console.WriteLine("Nombre departamento: " + departamento.Name + "\nNombre encargado: " + departamento.Encargado);
+                            foreach (Seccion seccion in departamento.Seccion)
+                            {
+                                Console.WriteLine("Nombre seccion: " + seccion.Name + "\nNombre encargado: " + seccion.Encargado);
+                                foreach (Bloque bloque in seccion.Bloques)
+                                {
+                                    Console.WriteLine("Nombre bloque: " + bloque.Name + "\nNombre encargado: " + bloque.Encargado);
+                                    foreach (Persona persona in bloque.Personal)
+                                    {
+                                        Console.WriteLine("Nombre persona: " + persona.Nombre + "\nrut: " + persona.Rut);
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else if (largo == 3)
+                {
+                    foreach (Departamento departamento in empresa.Divisiones)
+                    {
+                        Console.WriteLine("Nombre departamento: " + departamento.Name + "\nNombre encargado: " + departamento.Encargado);
+                        foreach (Seccion seccion in departamento.Seccion)
+                        {
+                            Console.WriteLine("Nombre seccion: " + seccion.Name + "\nNombre encargado: " + seccion.Encargado);
+                            foreach (Bloque bloque in seccion.Bloques)
+                            {
+                                Console.WriteLine("Nombre bloque: " + bloque.Name + "\nNombre encargado: " + bloque.Encargado);
+                                foreach (Persona persona in bloque.Personal)
+                                {
+                                    Console.WriteLine("Nombre persona: " + persona.Nombre + "\nrut: " + persona.Rut);
+
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else if (largo == 2)
+                {
+                    foreach (Seccion seccion in empresa.Divisiones)
+                    {
+                        Console.WriteLine("Nombre seccion: " + seccion.Name + "\nNombre encargado: " + seccion.Encargado);
+                        foreach (Bloque bloque in seccion.Bloques)
+                        {
+                            Console.WriteLine("Nombre bloque: " + bloque.Name + "\nNombre encargado: " + bloque.Encargado);
+                            foreach (Persona persona in bloque.Personal)
+                            {
+                                Console.WriteLine("Nombre persona: " + persona.Nombre + "\nrut: " + persona.Rut);
+
+                            }
+                        }
+                    }
+                }
+                else if (largo == 1) 
+                {
+                    foreach (Bloque bloque in empresa.Divisiones)
+                    {
+                        Console.WriteLine("Nombre bloque: " + bloque.Name + "\nNombre encargado: " + bloque.Encargado);
+                        foreach (Persona persona in bloque.Personal)
+                        {
+                            Console.WriteLine("Nombre persona: " + persona.Nombre + "\nrut: " + persona.Rut);
+
+                        }
+                    }
+
+                }
+
+         
             }
             catch 
             {
